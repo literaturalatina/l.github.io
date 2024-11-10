@@ -1,0 +1,245 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alejandra Pizarnik</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilo para el contenedor de la información */
+      .info-container {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Estilo para la imagen de Pizarnik */
+      .info-container img {
+        width: 220px;
+        height: auto;
+        margin-right: 20px;
+      }
+
+      /* Estilo para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px auto;
+      }
+
+      .gallery-item {
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .gallery-item img {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      /* Estilo para el modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Alejandra Pizarnik</h1>
+      <p>
+        Explorando la vida y obra de Alejandra Pizarnik, una de las voces más
+        relevantes de la poesía argentina y latinoamericana.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="llosa.html"> Vargas Llosa</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal sobre Alejandra Pizarnik -->
+    <main>
+      <section class="info-container">
+        <img src="imagenes/alejandra.jpeg" alt="Alejandra Pizarnik" />
+        <div>
+          <h2>Alejandra Pizarnik</h2>
+          <p>
+            Alejandra Pizarnik (1936-1972) fue una poeta y ensayista argentina,
+            nacida en Buenos Aires. Famosa por Los trabajos y las noches y su
+            exploración de la angustia existencial, empleó un lenguaje preciso y
+            profundamente introspectivo. Su obra, que aborda temas oscuros y
+            complejos, ha dejado una influencia duradera en la poesía
+            contemporánea.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('La tierra más ajena', 'Primer libro de Pizarnik, con un tono romántico y surrealista, que refleja su estilo inicial lleno de melancolía y exploraciones del yo.')"
+          >
+            <img src="imagenes/tierraajena.jpg" alt="La tierra más ajena" />
+            <p>La tierra más ajena</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Árbol de Diana', 'Poemario icónico de 38 poemas breves, que muestra una profunda introspección, abordando temas como la soledad y la búsqueda de sentido en un estilo enigmático y visual.')"
+          >
+            <img src="imagenes/arboldiana.jpg" alt="Árbol de Diana" />
+            <p>Árbol de Diana</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Extracción de la piedra de la locura', 'Poemas intensos que exploran la locura y los miedos de Pizarnik, mostrando su lenguaje único y su obsesión por el dolor y el vacío.')"
+          >
+            <img
+              src="imagenes/extraccionpiedra.jpg"
+              alt="Extracción de la piedra de la locura"
+            />
+            <p>Extracción de la piedra de la locura</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La condesa sangrienta', 'Prosa poética basada en la figura de la condesa Erzsébet Báthory. El texto explora temas de crueldad y belleza a través de una visión fascinada por la violencia.')"
+          >
+            <img src="imagenes/condesa.jpg" alt="La condesa sangrienta" />
+            <p>La condesa sangrienta</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El infierno musical', 'Poemas complejos, donde el lenguaje se vuelve un medio para expresar el dolor, el deseo y la experiencia de lo inefable.')"
+          >
+            <img src="imagenes/infiernomusical.jpg" alt="El infierno musical" />
+            <p>El infierno musical</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Poesía completa', 'Reúne todos los poemas publicados de Pizarnik, permitiendo observar la evolución de su estilo y sus temáticas existenciales.')"
+          >
+            <img src="imagenes/poesiacompleta.jpg" alt="Poesía completa" />
+            <p>Poesía completa</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Diarios', 'Publicación de sus pensamientos y reflexiones personales, que revelan su proceso creativo y su visión de la vida y el arte.            ')"
+          >
+            <img src="imagenes/diarios.jpg" alt="Diarios" />
+            <p>Diarios</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Prosa completa', 'Incluye textos críticos y cuentos de Pizarnik, donde su lenguaje lírico explora temas existenciales en formatos más narrativos.')"
+          >
+            <img src="imagenes/prosa.jpg" alt="Prosa completa" />
+            <p>Prosa completa</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Nueva correspondencia', 'Colección de cartas que envió a colegas y amigos, en las que se expresa su visión de la poesía y su proceso introspectivo.')"
+          >
+            <img
+              src="imagenes/nuevacorrespondencia.jpg"
+              alt="Nueva correspondencia"
+            />
+            <p>Nueva correspondencia</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      // Función para abrir el modal
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      // Función para cerrar el modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      // Cerrar el modal si se hace clic fuera de él
+      window.onclick = function (event) {
+        const modal = document.getElementById("myModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-image: url(imagenes/fondo1.jpg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+div {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.699);
+  font-size: 20px;
+}
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+button {
+  height: 100px;
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.808);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 30px;
+  font-style: italic;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.932);
+  color: white;
+  font-size: 40px;
+}
+
+footer {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-size: 25px;
+  font-style: oblique;
+  padding: 10px 20px;
+  position: absolute;
+  display: inline-block;
+  margin: 0 auto;
+  border-radius: 30px;
+  left: 0;
+  bottom: 0;
+}

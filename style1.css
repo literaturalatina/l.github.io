@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-image: url(imagenes/fondo1.jpg);
+  color: #333;
+  padding: 20px;
+}
+
+/* Encabezado */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+/* Navegación */
+nav {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  border-top: 0;
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  background-color: #ffffff;
+  font-size: 25px;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li a:hover {
+  color: #007bff;
+  font-size: 27px;
+}
+
+/* Si tienes un segundo nav, hazlo igual que el primero */
+nav + nav {
+  margin-top: 0; /* Si es otro nav, no debe tener margen */
+}
+
+/* Secciones */
+section {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+/* Sección de citas literarias */
+.citas-literarias {
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #e8f4fc;
+  border-radius: 8px;
+  font-style: italic;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+  max-width: 600px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.citas-literarias:hover {
+  color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Estilo para la cita literaria */
+.cita-hover {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #333;
+  font-style: italic;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    text-align: center; /* Centra el contenido */
+  }
+
+  .info-container img {
+    margin: 0 0 20px 0; /* Quita el margen derecho y agrega margen inferior */
+  }
+}

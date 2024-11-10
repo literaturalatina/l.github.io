@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sopa de Letras</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      #word-list {
+        background-color: #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 250px;
+        overflow-y: auto;
+        max-height: 300px;
+      }
+
+      #word-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #word-list li {
+        font-size: 18px;
+        margin-bottom: 5px;
+        transition: color 0.2s, text-decoration 0.2s;
+      }
+
+      .found-word {
+        text-decoration: line-through;
+        color: gray;
+      }
+
+      #game {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        grid-template-rows: repeat(11, 1fr);
+        gap: 0;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 385px;
+      }
+
+      .letter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        font-size: 18px;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.2s;
+      }
+
+      .highlighted {
+        background-color: red;
+      }
+
+      .found {
+        background-color: green;
+        color: white;
+      }
+
+      /* Mensaje de felicitaciones */
+      #congratulations {
+        display: none;
+        padding: 20px;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sopa de letras</h1>
+      <p>
+        Encuentra las palabras escondidas relacionadas con lo visto
+        anteriormente
+      </p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="llosa.html">Vargas Llosa</a></li>
+        <li><a href="allende.html">Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div id="word-list">
+        <ul id="words">
+          <!-- Lista de palabras aquí -->
+        </ul>
+      </div>
+      <div id="game"></div>
+    </div>
+
+    <!-- Mensaje de felicitaciones -->
+    <div id="congratulations">
+      ¡Felicidades! Has encontrado todas las palabras.
+    </div>
+
+    <script>
+      const words = [
+        "PIZARNIK",
+        "MARTÍ",
+        "MÁRQUEZ",
+        "ALLENDE",
+        "LEVRERO",
+        "LLOSA",
+        "LITERATURA",
+        "AMÉRICA",
+      ];
+      const gridSize = 11;
+      const grid = Array.from({ length: gridSize }, () =>
+        Array(gridSize).fill("")
+      );
+
+      function displayWordList() {
+        const wordListElement = document.getElementById("words");
+        words.forEach((word) => {
+          const wordItem = document.createElement("li");
+          wordItem.textContent = word;
+          wordItem.dataset.word = word;
+          wordListElement.appendChild(wordItem);
+        });
+      }
+
+      function placeWords() {
+        const directions = [
+          [0, 1], // horizontal derecha
+          [1, 0], // vertical hacia abajo
+        ];
+
+        words.forEach((word) => {
+          let placed = false;
+          let attempts = 0;
+          while (!placed && attempts < 100) {
+            const dir =
+              directions[Math.floor(Math.random() * directions.length)];
+            let row = Math.floor(Math.random() * gridSize);
+            let col = Math.floor(Math.random() * gridSize);
+
+            if (canPlaceWord(word, row, col, dir)) {
+              for (let i = 0; i < word.length; i++) {
+                grid[row][col] = word[i];
+                row += dir[0];
+                col += dir[1];
+              }
+              placed = true;
+            }
+            attempts++;
+          }
+          if (!placed) {
+            console.warn(`No se pudo colocar la palabra: ${word}`);
+          }
+        });
+
+        fillRandomLetters();
+      }
+
+      function canPlaceWord(word, row, col, dir) {
+        for (let i = 0; i < word.length; i++) {
+          if (
+            row < 0 ||
+            row >= gridSize ||
+            col < 0 ||
+            col >= gridSize ||
+            (grid[row][col] && grid[row][col] !== word[i])
+          ) {
+            return false;
+          }
+          row += dir[0];
+          col += dir[1];
+        }
+        return true;
+      }
+
+      function fillRandomLetters() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (let i = 0; i < gridSize; i++) {
+          for (let j = 0; j < gridSize; j++) {
+            if (!grid[i][j]) {
+              grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+            }
+          }
+        }
+      }
+
+      function createGrid() {
+        const gameContainer = document.getElementById("game");
+        gameContainer.innerHTML = "";
+
+        grid.forEach((row, i) => {
+          row.forEach((letter, j) => {
+            const cell = document.createElement("div");
+            cell.classList.add("letter");
+            cell.textContent = letter;
+            cell.dataset.row = i;
+            cell.dataset.col = j;
+            gameContainer.appendChild(cell);
+          });
+        });
+      }
+
+      let selectedCells = [];
+
+      function handleStart(event) {
+        event.preventDefault();
+        const cell = event.target;
+        if (cell.classList.contains("letter")) {
+          cell.classList.add("highlighted");
+          selectedCells.push(cell);
+        }
+      }
+
+      function handleMove(event) {
+        event.preventDefault();
+        const touch = event.touches ? event.touches[0] : event;
+        const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (
+          cell &&
+          cell.classList.contains("letter") &&
+          selectedCells.length > 0
+        ) {
+          if (!selectedCells.includes(cell)) {
+            cell.classList.add("highlighted");
+            selectedCells.push(cell);
+          }
+        }
+      }
+
+      function handleEnd(event) {
+        event.preventDefault();
+        const word = selectedCells.map((cell) => cell.textContent).join("");
+        if (
+          words.includes(word) ||
+          words.includes(word.split("").reverse().join(""))
+        ) {
+          selectedCells.forEach((cell) => {
+            cell.classList.remove("highlighted");
+            cell.classList.add("found");
+            const wordItem = document.querySelector(`li[data-word="${word}"]`);
+            if (wordItem) wordItem.classList.add("found-word");
+          });
+        } else {
+          selectedCells.forEach((cell) => cell.classList.remove("highlighted"));
+        }
+        selectedCells = [];
+
+        checkAllWordsFound();
+      }
+
+      function checkAllWordsFound() {
+        const allFound = words.every((word) => {
+          const wordItem = document.querySelector(`li[data-word="${word}"]`);
+          return wordItem && wordItem.classList.contains("found-word");
+        });
+
+        if (allFound) {
+          document.getElementById("congratulations").style.display = "block";
+        }
+      }
+
+      // Eventos para PC y móviles
+      document
+        .getElementById("game")
+        .addEventListener("mousedown", handleStart);
+      document.getElementById("game").addEventListener("mousemove", handleMove);
+      document.getElementById("game").addEventListener("mouseup", handleEnd);
+      document
+        .getElementById("game")
+        .addEventListener("touchstart", handleStart);
+      document.getElementById("game").addEventListener("touchmove", handleMove);
+      document.getElementById("game").addEventListener("touchend", handleEnd);
+
+      displayWordList();
+      placeWords();
+      createGrid();
+    </script>
+  </body>
+</html>

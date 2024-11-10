@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mario Levrero</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilo para el contenedor de la información */
+      .info-container {
+        margin: 20px auto; /* Margen vertical de 20px y centrado horizontal */
+        padding: 20px; /* Espacio interno */
+        max-width: 800px; /* Ancho máximo del contenedor */
+        border: 1px solid #ccc; /* Borde opcional */
+        border-radius: 10px; /* Bordes redondeados opcional */
+        display: flex; /* Usar flexbox */
+        align-items: center; /* Alinear verticalmente el contenido */
+      }
+
+      /* Estilo para la imagen de Levrero */
+      .info-container img {
+        width: 220px; /* Ajustar el ancho de la imagen de Levrero */
+        height: auto; /* Mantener la proporción de la imagen */
+        margin-right: 20px; /* Espacio a la derecha de la imagen */
+      }
+
+      /* Estilo para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap; /* Permite que las imágenes se ajusten en varias filas */
+        justify-content: center; /* Centra las imágenes */
+        margin: 20px auto; /* Margen vertical de 20px y centrado horizontal */
+      }
+
+      .gallery-item {
+        margin: 10px; /* Espacio entre las imágenes */
+        border: 1px solid #ccc; /* Borde opcional */
+        border-radius: 5px; /* Bordes redondeados opcional */
+        overflow: hidden; /* Para redondear bordes en imágenes */
+        cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+      }
+
+      .gallery-item img {
+        width: 200px; /* Ancho fijo de las imágenes */
+        height: 300px; /* Altura fija para que todas las imágenes tengan el mismo tamaño */
+        object-fit: cover; /* Asegura que la imagen cubra todo el área especificada */
+      }
+
+      /* Estilo para el modal */
+      .modal {
+        display: none; /* Oculto por defecto */
+        position: fixed; /* Fijo en la pantalla */
+        z-index: 1; /* Por encima de otros elementos */
+        left: 0;
+        top: 0;
+        width: 100%; /* 100% del ancho */
+        height: 100%; /* 100% de la altura */
+        overflow: auto; /* Habilitar scroll si es necesario */
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% desde la parte superior y centrado */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Ancho del modal */
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mario Levrero</h1>
+      <p>
+        Explorando la vida y obra de Mario Levrero, un escritor singular en la
+        literatura uruguaya y latinoamericana.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="llosa.html"> Vargas Llosa</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal sobre Mario Levrero -->
+    <main>
+      <section class="info-container">
+        <img src="imagenes/levrero.png" alt="Mario Levrero" />
+        <div>
+          <h2>Mario Levrero</h2>
+          <p>
+            Mario Levrero (1940-2004) fue un escritor uruguayo nacido en
+            Montevideo. Destacado por El discurso vacío y su combinación de
+            realismo, introspección y elementos fantásticos, exploró temas como
+            la soledad, el deseo y la búsqueda de identidad. Su obra, que
+            incluye novelas, ensayos y relatos cortos, deja un legado profundo
+            en la literatura latinoamericana.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('Cartas a la Princesa', 'Esta obra es una serie de cartas escritas a una joven llamada Julia. A través de estas cartas, Levrero comparte sus pensamientos más íntimos sobre el amor, la soledad y la búsqueda de significado en la vida. La obra resalta la vulnerabilidad del autor y su deseo de conectar emocionalmente con su destinataria.')"
+          >
+            <img src="imagenes/cartasprincesa.jpg" alt="Cartas a la Princesa" />
+            <p>Cartas a la Princesa</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La Novela Luminosa', 'En esta novela metaficcional, el protagonista explora el proceso de creación literaria mientras reflexiona sobre su angustia y su pasión por escribir. Se presenta como una obra que desafía la linealidad narrativa y se adentra en los laberintos de la mente del autor.')"
+          >
+            <img src="imagenes/lanovelaluminosa.jpg" alt="La Novela Luminosa" />
+            <p>La Novela Luminosa</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El Discurso Vacío', 'Este libro aborda la incomunicación en la sociedad contemporánea. Utilizando un estilo fragmentado, Levrero muestra la desconexión entre el lenguaje y el significado, invitando al lector a cuestionar la efectividad de la comunicación en el mundo moderno.            ')"
+          >
+            <img src="imagenes/eldiscurso.jpg" alt="El Discurso Vacío" />
+            <p>El Discurso Vacío</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El Lugar', 'Esta novela narra el viaje de un protagonista hacia un lugar enigmático. A medida que avanza la historia, se reflexiona sobre la existencia, la identidad personal y el sentido del viaje mismo, en un contexto donde lo real y lo fantástico se entrelazan.')"
+          >
+            <img src="imagenes/ellugar.jpg" alt="El Lugar" />
+            <p>El Lugar</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El alma de Gardel', 'Esta obra mezcla biografía y ficción, enfocándose en la figura de Carlos Gardel. Levrero explora el impacto cultural de Gardel y el legado de su música, tejiendo una narrativa que refleja la fascinación del autor por el mundo del tango.')"
+          >
+            <img src="imagenes/gardel.jpg" alt="El alma de Gardel" />
+            <p>El alma de Gardel</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La ciudad', 'En esta novela, Levrero examina las dinámicas de la vida urbana, reflexionando sobre dilemas contemporáneos como la libertad y la opresión en un entorno citadino. La obra destaca por su mirada crítica hacia la modernidad y sus efectos en el individuo.            ')"
+          >
+            <img src="imagenes/laciudad.jpg" alt="La ciudad" />
+            <p>La ciudad</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Dejen todo en mis manos', 'Aquí, Levrero narra la vida de un hombre enfrentado a situaciones caóticas. A través de esta obra, se exploran temas de ansiedad y la búsqueda de sentido en medio del desorden, en un estilo que combina el humor y la melancolía.            ')"
+          >
+            <img src="imagenes/dejentodo.jpg" alt="Dejen todo en mis manos" />
+            <p>Dejen todo en mis manos</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Los muertos', 'Esta colección de relatos aborda la temática de la muerte y la vida, utilizando recuerdos y nostalgia para entrelazar lo real con lo surrealista. Cada relato ofrece una perspectiva única sobre la relación del autor con la muerte y su impacto en la existencia.')"
+          >
+            <img src="imagenes/losmuertos.jpg" alt="Los muertos" />
+            <p>Los muertos</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Irrupciones', 'Esta obra es una recopilación de relatos cortos donde lo absurdo irrumpe en la vida cotidiana. Levrero juega con la idea de la irrupción de lo extraordinario en lo habitual, explorando cómo estos momentos alteran la percepción del mundo..')"
+          >
+            <img src="imagenes/irrupciones.jpg" alt="Irrupciones" />
+            <p>Irrupciones</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      // Función para abrir el modal
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      // Función para cerrar el modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      // Cerrar el modal si se hace clic fuera del contenido
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

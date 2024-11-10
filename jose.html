@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Martí</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilos para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .gallery-item {
+        cursor: pointer;
+        text-align: center;
+        width: 180px; /* Ajusta el tamaño como desees */
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 260px; /* Ajuste para que todas las imágenes tengan la misma altura */
+        object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+      }
+
+      /* Estilos del modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .info-container {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>José Martí</h1>
+      <p>
+        Explorando la vida y obra de José Julián Martí Pérez, un símbolo de la
+        independencia de Cuba y una figura clave en la literatura
+        latinoamericana.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="llosa.html"> Vargas Llosa</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal sobre José Martí -->
+    <main>
+      <section class="info-container">
+        <img
+          src="imagenes/josemarti.jpg"
+          alt="José Martí"
+          style="width: 150px; height: auto; margin-right: 20px"
+        />
+        <div>
+          <h2>José Julián Martí Pérez</h2>
+          <p>
+            José Julián Martí Pérez (1853-1895) fue un escritor, poeta y líder
+            político cubano, considerado un ícono de la independencia de Cuba y
+            una figura clave en la literatura latinoamericana. A través de sus
+            obras, como *Versos Sencillos* y *Nuestra América*, dejó un legado
+            en la lucha por la justicia social y la unidad latinoamericana.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de Obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('Versos Sencillos', 'Una colección de poemas en los que Martí expresa sus ideales sobre el amor, la patria, la naturaleza y la libertad.')"
+          >
+            <img src="imagenes/versossencillos.jpg" alt="Versos Sencillos" />
+            <p>Versos Sencillos</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Ismaelillo', 'Una obra poética dedicada a su hijo, en la que expresa su amor paternal y reflexiona sobre la educación.')"
+          >
+            <img src="imagenes/ismaelillo.jpg" alt="Ismaelillo" />
+            <p>Ismaelillo</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Nuestra América', 'Un ensayo en el que Martí reflexiona sobre la situación política de América Latina y aboga por la unidad de los países latinoamericanos.')"
+          >
+            <img src="imagenes/nuestraamerica.jpg" alt="Nuestra América" />
+            <p>Nuestra América</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La muñeca negra', 'Un poema infantil que refleja las desigualdades raciales y sociales, a través de la historia de una niña que sufre por la discriminación.')"
+          >
+            <img src="imagenes/munecanegra.jpg" alt="La muñeca negra" />
+            <p>La muñeca negra</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Los zapaticos de rosa', 'Un relato que narra la historia de una niña que pierde sus zapatos rosados, simbolizando la pérdida de la inocencia y la lucha por la justicia.')"
+          >
+            <img src="imagenes/zapaticosrosa.jpg" alt="Los zapaticos de rosa" />
+            <p>Los zapaticos de rosa</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Cartas a María Mantilla', 'Una serie de cartas en las que Martí expresa su cariño y reflexión sobre la vida y la libertad, destacando su visión humanista.')"
+          >
+            <img src="imagenes/cartasmaria.jpg" alt="Cartas a María Mantilla" />
+            <p>Cartas a María Mantilla</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La Edad de Oro', 'Una revista dirigida a niños que reúne historias, leyendas y poesía, promoviendo la educación crítica y responsable.')"
+          >
+            <img src="imagenes/edadoro.jpg" alt="La Edad de Oro" />
+            <p>La Edad de Oro</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La Niña de Guatemala', 'Un poema melancólico en el que Martí expresa su dolor por la muerte de una joven guatemalteca.')"
+          >
+            <img src="imagenes/ninaguatemala.jpg" alt="La Niña de Guatemala" />
+            <p>La Niña de Guatemala</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Tres heroes', 'Es una obra de José Martí que honra a José de San Martín, Simón Bolívar y Miguel Hidalgo, destacando su lucha por la independencia de América Latina y sus ideales de libertad y justicia.')"
+          >
+            <img src="imagenes/tresheroes.jpg" alt="Tres heroes" />
+            <p>Tres heroes</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

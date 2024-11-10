@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mario Vargas Llosa</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilos para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .gallery-item {
+        cursor: pointer;
+        text-align: center;
+        width: 180px; /* Ajusta el tamaño como desees */
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 260px; /* Ajuste para que todas las imágenes tengan la misma altura */
+        object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+      }
+
+      /* Estilos del modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .info-container {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mario Vargas Llosa</h1>
+      <p>
+        Explorando la vida y obra de Mario Vargas Llosa, un escritor peruano
+        destacado por su estilo narrativo y su reflexión sobre la política y la
+        sociedad.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal sobre Mario Vargas Llosa -->
+    <main>
+      <section class="info-container">
+        <img
+          src="imagenes/vargasllosa.jpg"
+          alt="Mario Vargas Llosa"
+          style="width: 150px; height: auto; margin-right: 20px"
+        />
+        <div>
+          <h2>Mario Vargas Llosa</h2>
+          <p>
+            Mario Vargas Llosa (1936-) es un escritor y ensayista peruano,
+            nacido en Arequipa. Reconocido por *La ciudad y los perros* y su
+            exploración de temas como el poder y la libertad, ganó el Premio
+            Nobel de Literatura en 2010. Su obra, que incluye novelas, ensayos y
+            relatos, ha influido profundamente en la literatura
+            hispanoamericana.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de Obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('La ciudad y los perros', 'Una novela que explora la brutalidad y la alienación en un internado militar en Lima, destacando la crítica a la violencia institucional.')"
+          >
+            <img
+              src="imagenes/laciudadylosperros.jpg"
+              alt="La ciudad y los perros"
+            />
+            <p>La ciudad y los perros</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La casa verde', 'Una obra que narra la historia de un burdel en la selva peruana, entrelazando las vidas de personajes diversos, con una compleja estructura narrativa.')"
+          >
+            <img src="imagenes/lacasaverde.jpg" alt="La casa verde" />
+            <p>La casa verde</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Conversación en La Catedral', 'Una novela sobre la corrupción y la represión política durante la dictadura de Odría en Perú, reflejando la desesperanza de la sociedad.')"
+          >
+            <img
+              src="imagenes/conversacionenlacatedral.jpg"
+              alt="Conversación en La Catedral"
+            />
+            <p>Conversación en La Catedral</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Pantaleón y las visitadoras', 'Una sátira sobre un capitán del ejército que organiza un servicio de prostitutas para los soldados, criticando la burocracia y la moralidad.')"
+          >
+            <img
+              src="imagenes/pantaleonylasvisitadoras.jpg"
+              alt="Pantaleón y las visitadoras"
+            />
+            <p>Pantaleón y las visitadoras</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La tía Julia y el escribidor', 'Una novela que alterna la historia de un joven escritor y su relación amorosa con su tía, reflejando el contraste entre realidad y ficción.')"
+          >
+            <img
+              src="imagenes/tiavulyaelescribidor.jpg"
+              alt="La tía Julia y el escribidor"
+            />
+            <p>La tía Julia y el escribidor</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La guerra del fin del mundo', 'Una novela épica inspirada en el conflicto entre el gobierno y una comunidad mesiánica en Brasil, abordando la fe, el fanatismo y la resistencia.')"
+          >
+            <img
+              src="imagenes/laguerradelfindelmundo.jpg"
+              alt="La guerra del fin del mundo"
+            />
+            <p>La guerra del fin del mundo</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El hablador', 'Una novela sobre un hombre que investiga a su amigo que se convierte en parte de una comunidad indígena en la Amazonía peruana.')"
+          >
+            <img src="imagenes/elhablador.png" alt="El hablador" />
+            <p>El hablador</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Elogio de la madrastra', 'Una novela erótica que explora una relación ilícita dentro de un matrimonio, abordando temas de deseo y moralidad.')"
+          >
+            <img
+              src="imagenes/elogiodelamadrastra.jpg"
+              alt="Elogio de la madrastra"
+            />
+            <p>Elogio de la madrastra</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El sueño del celta', 'Una novela sobre la vida de Roger Casement, un diplomático irlandés que denuncia los horrores del colonialismo en el Congo y la Amazonía.')"
+          >
+            <img src="imagenes/elsuenodelcelta.jpg" alt="El sueño del celta" />
+            <p>El sueño del celta</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isabel Allende</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilos para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .gallery-item {
+        cursor: pointer;
+        text-align: center;
+        width: 180px; /* Ajusta el tamaño como desees */
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 260px; /* Mantiene la proporción de la imagen */
+      }
+
+      /* Estilos del modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .info-container {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Isabel Allende</h1>
+      <p>
+        Explorando la vida y obra de Isabel Allende, una de las escritoras más
+        importantes de la literatura latinoamericana, conocida por su estilo
+        único y su visión sobre la historia y la identidad femenina.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="llosa.html"> Vargas Llosa</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+    <!-- Contenido principal sobre Isabel Allende -->
+    <main>
+      <section class="info-container">
+        <img
+          src="imagenes/isabelallende.jpg"
+          alt="Isabel Allende"
+          style="width: 150px; height: auto; margin-right: 20px"
+        />
+        <div>
+          <h2>Isabel Allende</h2>
+          <p>
+            Isabel Allende nacida en 1942 es una escritora chilena conocida por
+            su estilo único que fusiona el realismo mágico con el drama
+            histórico. Su obra aborda temas como la política, el feminismo y las
+            desigualdades sociales. Su primer libro, *La casa de los espíritus*,
+            catapultó su carrera y la consolidó como una de las voces más
+            importantes de la literatura latinoamericana.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de Obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('La casa de los espíritus', 'La obra que marcó el debut literario de Allende, en la que combina el realismo mágico con la historia de una familia chilena a lo largo del tiempo.')"
+          >
+            <img
+              src="imagenes/lacasadelosespiritus.jpg"
+              alt="La casa de los espíritus"
+            />
+            <p>La casa de los espíritus</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Eva Luna', 'Una novela que sigue la vida de una joven en un contexto político y social cambiante, mientras enfrenta luchas internas y externas.')"
+          >
+            <img src="imagenes/evaluna.jpg" alt="Eva Luna" />
+            <p>Eva Luna</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Paula', 'Una obra autobiográfica en la que Allende narra el sufrimiento por la muerte de su hija Paula, mientras reflexiona sobre la vida y la muerte.')"
+          >
+            <img src="imagenes/paula.jpg" alt="Paula" />
+            <p>Paula</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El plan infinito', 'Un relato sobre la amistad y la identidad, centrado en la vida de un joven que crece en un contexto político y social turbulento.')"
+          >
+            <img src="imagenes/elplaninfinito.jpg" alt="El plan infinito" />
+            <p>El plan infinito</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Inés del alma mía', 'Una novela histórica basada en la vida de Inés Suárez, una conquistadora española que participó en la fundación de Santiago de Chile.')"
+          >
+            <img src="imagenes/inesdelalmamia.jpg" alt="Inés del alma mía" />
+            <p>Inés del alma mía</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La isla bajo el mar', 'Una novela histórica que narra la vida de una esclava en la colonia francesa de Saint-Domingue y su lucha por la libertad.')"
+          >
+            <img src="imagenes/laislabajoelsol.jpg" alt="La isla bajo el mar" />
+            <p>La isla bajo el mar</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La ciudad de las bestias', 'El primer libro de la trilogía Las memorias de la tierra. Narra la aventura de Alexander Cold en el Amazonas, donde descubre un mundo lleno de misterios, culturas indígenas y criaturas fantásticas.')"
+          >
+            <img src="imagenes/bestias.jpg" alt="La ciudad de las bestias" />
+            <p>La ciudad de las bestias</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Violeta', 'Una novela que sigue la vida de Violeta, quien relata su historia personal a través de cartas. La obra cubre varias décadas del siglo XX y aborda temas como el amor, la política y los cambios sociales en su país.')"
+          >
+            <img src="imagenes/violeta.jpg" alt="Violeta" />
+            <p>Violeta</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Hija de la fortuna', 'Una novela que sigue la historia de una joven que huye de Chile hacia California en busca de un nuevo futuro durante la fiebre del oro.')"
+          >
+            <img src="imagenes/hijadelafortuna.jpg" alt="Hija de la fortuna" />
+            <p>Hija de la fortuna</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

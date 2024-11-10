@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .question {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .options button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+
+      .feedback {
+        font-size: 1.2em;
+        margin-top: 20px;
+      }
+
+      .final-message {
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Quiz Literario</h1>
+      <p>
+        ¡Pon a prueba tus conocimientos sobre las obras de nuestros autores
+        destacados!
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="gabriel.html">García Márquez</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="game-container">
+        <h2>¿De quién es la obra?</h2>
+        <p class="question" id="question">
+          ¿Quién escribió "Cartas a la princesa"?
+        </p>
+        <div class="options">
+          <button onclick="checkAnswer('Pizarnik')">Pizarnik</button>
+          <button onclick="checkAnswer('Levrero')">Levrero</button>
+          <button onclick="checkAnswer('Márquez')">Márquez</button>
+          <button onclick="checkAnswer('Martí')">Martí</button>
+          <button onclick="checkAnswer('Llosa')">Llosa</button>
+          <button onclick="checkAnswer('Allende')">Allende</button>
+        </div>
+        <p class="feedback" id="feedback"></p>
+        <div id="finalMessage" class="final-message"></div>
+      </section>
+    </main>
+
+    <script>
+      const questions = [
+        {
+          text: '¿Quién escribió "Cartas a la princesa"?',
+          answer: "Levrero",
+        },
+        {
+          text: '¿Quién escribió "Cien años de soledad"?',
+          answer: "Márquez",
+        },
+        {
+          text: '¿Quién escribió "La casa verde"?',
+          answer: "Llosa",
+        },
+        {
+          text: '¿Quién escribió "La niña de Guatemala"?',
+          answer: "Martí",
+        },
+        {
+          text: '¿Quién escribió "La hojarasca"?',
+          answer: "Márquez",
+        },
+        {
+          text: '¿Quién escribió "El sueño del celta"?',
+          answer: "Llosa",
+        },
+        {
+          text: '¿Quién escribió "Versos sencillos"?',
+          answer: "Martí",
+        },
+        {
+          text: '¿Quién escribió "Eva Luna"?',
+          answer: "Allende",
+        },
+        {
+          text: '¿Quién escribió "Paula"?',
+          answer: "Allende",
+        },
+        {
+          text: '¿Quién escribió "Árbol de Diana"?',
+          answer: "Pizarnik",
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let correctAnswers = 0;
+
+      function checkAnswer(selectedAnswer) {
+        const feedback = document.getElementById("feedback");
+        const question = questions[currentQuestionIndex];
+        if (selectedAnswer === question.answer) {
+          feedback.textContent = "¡Correcto!";
+          feedback.style.color = "green";
+          correctAnswers++;
+        } else {
+          feedback.textContent =
+            "Incorrecto. La respuesta correcta es " + question.answer + ".";
+          feedback.style.color = "red";
+        }
+
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          setTimeout(nextQuestion, 1000); // Pasar automáticamente a la siguiente pregunta después de 1 segundo
+        } else {
+          setTimeout(showFinalMessage, 1000); // Mostrar el mensaje final automáticamente después de la última pregunta
+        }
+      }
+
+      function nextQuestion() {
+        const questionElement = document.getElementById("question");
+        const feedback = document.getElementById("feedback");
+
+        const currentQuestion = questions[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.text;
+        feedback.textContent = "";
+
+        // Las opciones se mantienen fijas en el orden deseado
+        const optionsContainer = document.querySelector(".options");
+        optionsContainer.innerHTML = ""; // Limpiar las opciones anteriores
+        const options = [
+          "Pizarnik",
+          "Levrero",
+          "Márquez",
+          "Martí",
+          "Llosa",
+          "Allende",
+        ];
+        options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.onclick = () => checkAnswer(option);
+          optionsContainer.appendChild(button);
+        });
+      }
+
+      function showFinalMessage() {
+        const finalMessage = document.getElementById("finalMessage");
+        if (correctAnswers <= 3) {
+          finalMessage.textContent = "Eres un despistado.";
+          finalMessage.style.color = "red";
+        } else if (correctAnswers <= 6) {
+          finalMessage.textContent = "Debes prestar más atención.";
+          finalMessage.style.color = "red";
+        } else if (correctAnswers <= 9) {
+          finalMessage.textContent = "Muy bien, estuviste atento.";
+          finalMessage.style.color = "green";
+        } else {
+          finalMessage.textContent = "¡Excelente, eres un experto!";
+          finalMessage.style.color = "green";
+        }
+        finalMessage.style.display = "block";
+      }
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

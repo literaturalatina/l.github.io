@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriel García Márquez</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      /* Estilos para la galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .gallery-item {
+        cursor: pointer;
+        text-align: center;
+        width: 180px;
+      }
+
+      .gallery-item img {
+        width: 180px; /* Tamaño fijo para todas las imágenes */
+        height: 250px; /* Ajusta la altura para mantener la proporción deseada */
+        object-fit: cover; /* Recorta y centra la imagen para llenar el contenedor */
+      }
+
+      /* Estilos del modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .info-container {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Gabriel García Márquez</h1>
+      <p>
+        Explorando la vida y obra de Gabriel José García Márquez, un maestro del
+        realismo mágico y una de las figuras más influyentes de la literatura
+        latinoamericana.
+      </p>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+      <ul>
+        <li><a href="levrero.html">Mario Levrero</a></li>
+        <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+        <li><a href="jose.html">José Martí</a></li>
+        <li><a href="llosa.html"> Vargas Llosa</a></li>
+        <li><a href="allende.html"> Isabel Allende</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sopa.html">Sopa de Letras</a></li>
+      </ul>
+    </nav>
+
+    <!-- Contenido principal sobre Gabriel García Márquez -->
+    <main>
+      <section class="info-container">
+        <img
+          src="imagenes/garciamarquez.jpg"
+          alt="Gabriel García Márquez"
+          style="width: 150px; height: auto; margin-right: 20px"
+        />
+        <div>
+          <h2>Gabriel García Márquez</h2>
+          <p>
+            Gabriel José García Márquez (1927-2014) fue un escritor y periodista
+            colombiano, nacido en Aracataca. Famoso por *Cien años de soledad* y
+            por popularizar el realismo mágico, ganó el Premio Nobel de
+            Literatura en 1982. Su obra explora temas como el amor, la soledad y
+            la política, dejando un legado influyente en la literatura mundial.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galería de obras -->
+      <section>
+        <h2>Galería de Obras</h2>
+        <div class="gallery-container">
+          <div
+            class="gallery-item"
+            onclick="openModal('Cien años de soledad', 'Su obra más famosa, narra la historia de la familia Buendía en el pueblo ficticio de Macondo. Es un ejemplo clásico del realismo mágico y explora temas de destino, amor y soledad.')"
+          >
+            <img src="imagenes/cienaños.png" alt="Cien años de soledad" />
+            <p>Cien años de soledad</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El amor en los tiempos del cólera', 'Una historia de amor que sigue a Fermina Daza y Florentino Ariza durante más de cincuenta años, abordando el amor maduro y las vicisitudes de las relaciones a lo largo del tiempo.')"
+          >
+            <img
+              src="imagenes/amorcolera.jpg"
+              alt="El amor en los tiempos del cólera"
+            />
+            <p>El amor en los tiempos del cólera</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Crónica de una muerte anunciada', 'Novela corta basada en un asesinato real. Narra, en tono de crónica, los eventos alrededor del asesinato de Santiago Nasar, en una exploración de la fatalidad y el honor.')"
+          >
+            <img
+              src="imagenes/cronica.jpg"
+              alt="Crónica de una muerte anunciada"
+            />
+            <p>Crónica de una muerte anunciada</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El coronel no tiene quien le escriba', 'Cuenta la historia de un viejo coronel retirado que espera una pensión que nunca llega, reflejando la pobreza y las dificultades de la vida en una sociedad indiferente.')"
+          >
+            <img
+              src="imagenes/coronel.jpg"
+              alt="El coronel no tiene quien le escriba"
+            />
+            <p>El coronel no tiene quien le escriba</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La hojarasca', 'Su primera novela, ambientada en Macondo, relata las experiencias de un hombre que enfrenta el desprecio de su pueblo y reflexiona sobre el impacto de la llegada de la modernidad.')"
+          >
+            <img src="imagenes/hojarasca.jpg" alt="La hojarasca" />
+            <p>La hojarasca</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('La increíble y triste historia de la cándida Eréndira y de su abuela desalmada', 'Relato sobre una joven explotada por su abuela, aborda temas de abuso y explotación en una historia de gran carga simbólica y realismo mágico.')"
+          >
+            <img
+              src="imagenes/erendira.jpg"
+              alt="La increíble y triste historia de la cándida Eréndira"
+            />
+            <p>La increíble y triste historia de la cándida Eréndira</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('El general en su laberinto', 'Novela histórica que sigue los últimos días de Simón Bolívar en su recorrido por el río Magdalena, explorando su decadencia física y los sueños rotos del libertador.')"
+          >
+            <img src="imagenes/general.jpg" alt="El general en su laberinto" />
+            <p>El general en su laberinto</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Del amor y otros demonios', 'La historia de una joven enclaustrada y de un sacerdote que intenta exorcizarla. Explora temas de amor, religión y superstición en la América colonial.')"
+          >
+            <img
+              src="imagenes/otrosdemonios.jpg"
+              alt="Del amor y otros demonios"
+            />
+            <p>Del amor y otros demonios</p>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openModal('Relato de un náufrago', 'Basada en una historia real, esta obra cuenta la experiencia de Luis Alejandro Velasco, un marinero que sobrevive diez días a la deriva, en una crítica a la política y la corrupción.')"
+          >
+            <img src="imagenes/naufrago.jpg" alt="Relato de un náufrago" />
+            <p>Relato de un náufrago</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(title, description) {
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalDescription").innerText = description;
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal();
+        }
+      };
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Literatura por latinoamerica</title>
+    <link rel="stylesheet" href="style1.css" />
+  </head>
+  <body>
+    <main>
+      <!-- Título y descripción principal -->
+      <header>
+        <h1>Literatura por latinoamerica</h1>
+        <p>
+          Explorando la vida de los escritores mas importantes de latinoamerica
+        </p>
+      </header>
+
+      <!-- Barra de navegación debajo del encabezado -->
+      <nav>
+        <ul>
+          <li><a href="levrero.html">Mario Levrero</a></li>
+          <li><a href="pizarnik.html">Alejandra Pizarnik</a></li>
+          <li><a href="gabriel.html">García Márquez</a></li>
+          <li><a href="jose.html">José Martí</a></li>
+          <li><a href="llosa.html"> Vargas Llosa</a></li>
+          <li><a href="allende.html"> Isabel Allende</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <ul>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="sopa.html">Sopa de Letras</a></li>
+        </ul>
+      </nav>
+      <section class="citas-literarias">
+        <p id="cita">
+          "La escritura es un modo de comprender el mundo y, a la vez, de
+          escapar de él. – Mario Levrero..."
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const citas = [
+        "Ser culto es el único modo de ser libre. – José Martí",
+        "para triunfar en la vida es preciso creer en algo, o sea estar, por definición, equivocado. ― Mario Levrero",
+        "Mi única lucha es la de vivir. – Alejandra Pizarnik",
+        "La muerte no es el final de la vida, sino una transformación. – Isabel Allende",
+        "La libertad es el oxígeno de la inteligencia. – Mario Vargas Llosa",
+        "La vida no es la que uno vivió, sino la que uno recuerda y cómo la recuerda para contarla. – Gabriel García Márquez",
+      ];
+
+      const citaElement = document.getElementById("cita");
+
+      // Cambia la cita al pasar el mouse sobre la sección
+      citaElement.addEventListener("mouseover", () => {
+        const randomIndex = Math.floor(Math.random() * citas.length);
+        citaElement.textContent = citas[randomIndex];
+      });
+      // Selecciona todos los enlaces de la navegación
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Agrega un evento touchstart a cada enlace
+      navLinks.forEach((link) => {
+        link.addEventListener("touchstart", (event) => {
+          event.preventDefault();
+          window.location.href = link.href;
+        });
+      });
+    </script>
+  </body>
+</html>

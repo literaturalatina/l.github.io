@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Literatura por Latinoamérica</title>
+    <style>
+      /* Asegura que html y body ocupen toda la pantalla */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Asegura que el contenedor principal ocupe toda la pantalla */
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Esto asegura que ocupe toda la altura de la ventana */
+        width: 100vw; /* Esto asegura que ocupe todo el ancho de la ventana */
+      }
+
+      /* Rueda de carga */
+      .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2em;
+        text-align: center;
+      }
+
+      /* Estilos para pantallas pequeñas */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.5em;
+        }
+        .loader {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Literatura por Latinoamérica</h1>
+    </div>
+    <main>
+      <div class="loader"></div>
+    </main>
+
+    <script>
+      // Redirige a "inicio.html" después de 3 segundos
+      setTimeout(function () {
+        window.location.href = "inicio.html";
+      }, 3000); // 3000 milisegundos = 3 segundos
+    </script>
+  </body>
+</html>
